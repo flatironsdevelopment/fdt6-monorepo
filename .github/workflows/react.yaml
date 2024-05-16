@@ -1,0 +1,88 @@
+name: Build and deploy process fdt6-react
+
+on:
+  push:
+    branches:
+      - staging
+      - main  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+            aws-region: ${{ secrets.AWS_REGION }}
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Build and tag docker image fdt6-react
+        uses: docker/build-push-action@v3
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.PROJECT_NAME }}-application
+          CURRENT_BRANCH: ${{ github.ref_name }}
+          IMAGE_SHA: ${{ steps.vars.outputs.sha_short }}
+        with:
+          context: ./
+          file: apps/web/Dockerfile
+          push: true
+          tags: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:fdt6-react-${{ env.IMAGE_SHA }}
+          build-args: NEXT_PUBLIC_API_HOST=https://fdt6-nest.flatirons.com
+
+      - name: Checkout Helmcharts Repository
+        uses: actions/checkout@v3
+        with:
+          ref: 'main'
+          repository: ${{ secrets.REPO_NAME }}
+          path: helmcharts
+          token: ${{ secrets.ACCESS_TOKEN }}
+
+      - name: Update repository in the related HelmChart values.yaml fdt6-react
+        if: github.ref == 'refs/heads/staging'
+        uses: fjogeleit/yaml-update-action@main
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.PROJECT_NAME }}-application
+        with:
+          valueFile: "helmcharts/app/values.yaml"
+          propertyPath: 'image.repository'
+          value: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}
+          repository: ${{ secrets.REPO_NAME }}
+          branch: "main"
+          commitChange: true
+          updateFile: true
+          message: "Update Image Version to ${{ steps.vars.outputs.sha_short }}"
+          token: ${{ secrets.ACCESS_TOKEN }}
+          workdir: helmcharts
+
+      - name: Update Image Version in the related HelmChart values.yaml fdt6-react
+        if: github.ref == 'refs/heads/staging'
+        uses: fjogeleit/yaml-update-action@main
+        with:
+          valueFile: "helmcharts/app/values.yaml"
+          propertyPath: 'image.tag'
+          value: "fdt6-react-${{ steps.vars.outputs.sha_short }}"
+          repository: ${{ secrets.REPO_NAME }}
+          branch: "main"
+          commitChange: true
+          updateFile: true
+          message: "Update Image Version to fdt6-react-${{ steps.vars.outputs.sha_short }}"
+          token: ${{ secrets.ACCESS_TOKEN }}
+          workdir: helmcharts
