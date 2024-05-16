@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`UserFactory should return a mock user 1`] = `
+{
+  "email": "Alek45@gmail.com",
+  "emailVerified": true,
+  "firstName": "Connor",
+  "id": "pZIV07iZ9e5obolFoWxQpjGw",
+  "lastName": "Thiel",
+  "phoneNumber": "519-378-7983 x0658",
+  "phoneNumberVerified": true,
+}
+`;

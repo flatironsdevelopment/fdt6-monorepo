@@ -1,0 +1,30 @@
+doctype html
+html(lang="en")
+  head
+    meta(charset="utf-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0")
+    title #{title}
+
+    // You can include CSS styles here or link to an external stylesheet
+    style.
+      /* Your CSS styles for email */
+
+  body
+    // Email wrapper, adjust styling based on your design
+    .email-wrapper(style="max-width: 600px; margin: 0 auto; padding: 20px; font-family: Arial, sans-serif;")
+
+      // Email header/logo section
+      .header
+        img(src="https://example.com/logo.png" alt="Company Logo" style="max-width: 100px;")
+
+      // Email content section
+      .content(style="margin-top: 20px;")
+
+        // You can include dynamic content using Pug syntax
+        block content
+
+      // Email footer section
+      .footer(style="margin-top: 20px; text-align: center;")
+        p © 2024 Flatirons Development, LLC. All rights reserved.
+
+    // You might include additional tracking pixels or footer links here

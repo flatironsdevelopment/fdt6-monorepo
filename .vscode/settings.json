@@ -1,0 +1,29 @@
+{
+  "typescript.tsdk": "./node_modules/typescript/lib",
+  "typescript.enablePromptUseWorkspaceTsdk": true,
+  "editor.formatOnSave": true,
+  "editor.formatOnPaste": false,
+  "editor.detectIndentation": false,
+  "editor.insertSpaces": true,
+  "editor.tabSize": 2,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit",
+    "source.organizeImports": "explicit"
+  },
+  "[handlebars]": {
+    "editor.formatOnSave": false,
+    "editor.formatOnPaste": false
+  },
+  "files.eol": "\n",
+  "tailwindCSS.experimental.classRegex": [
+    ["Styles \\=([^;]*);", "'([^']*)'"],
+    ["Styles \\=([^;]*);", "\"([^\"]*)\""],
+    ["Styles \\=([^;]*);", "\\`([^\\`]*)\\`"],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cva\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["cx\\(([^)]*)\\)", "(?:'|\"|`)([^']*)(?:'|\"|`)"],
+    ["cn\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"],
+    ["styled\\(([^)]*)\\)", "[\"'`]([^\"'`]*).*?[\"'`]"]
+  ],
+  "cSpell.words": ["TOTP"]
+}

@@ -1,0 +1,29 @@
+{
+  "name": "api-authentication",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-presets/jest/node"
+  },
+  "dependencies": {
+    "@aws-sdk/client-cognito-identity-provider": "^3.505.0",
+    "cookies-next": "^4.1.1",
+    "lodash.camelcase": "^4.3.0",
+    "lodash.merge": "^4.6.2",
+    "react-query": "^3.39.3",
+    "refresh-fetch": "^0.8.0"
+  },
+  "devDependencies": {
+    "@types/lodash.merge": "^4.6.9",
+    "@types/refresh-fetch": "^0.6.7",
+    "typescript": "^5.3.3",
+    "~types": "*"
+  },
+  "peerDependencies": {
+    "react": "18.2.0"
+  }
+}

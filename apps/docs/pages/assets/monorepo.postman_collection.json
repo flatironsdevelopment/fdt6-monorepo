@@ -1,0 +1,2443 @@
+{
+	"info": {
+		"_postman_id": "2ccb00b9-3ee1-45c1-9492-deeb29b2f09c",
+		"name": "Starter Monorepo",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "30444937",
+		"_collection_link": "https://uwu---.postman.co/workspace/Work~41ef47f8-87c7-470d-b8df-7274c2fbdad8/collection/30444937-2ccb00b9-3ee1-45c1-9492-deeb29b2f09c?action=share&source=collection_link&creator=30444937"
+	},
+	"item": [
+		{
+			"name": "Auth",
+			"item": [
+				{
+					"name": "Session",
+					"item": [
+						{
+							"name": "Sign In",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var response = pm.response.json();",
+											"",
+											"if(response.session) {",
+											"    pm.collectionVariables.set(\"user_session\", response.session);",
+											"    pm.collectionVariables.set(\"user_id\", response.userId);",
+											"    return;",
+											"}",
+											"",
+											"pm.collectionVariables.set(\"user_refresh_token\", response.refreshToken);",
+											"pm.collectionVariables.set(\"user_access_token\", response.accessToken);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/auth/sign-in",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"sign-in"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Error",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/sign-in",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sign-in"
+											]
+										}
+									},
+									"status": "Bad Request",
+									"code": 400,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "192"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"c0-30TLa5BAoQexaFQQ4g4Rp9LyQOw\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 29 Nov 2023 13:52:54 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"message\": [\n        \"email must be an email\",\n        \"email should not be empty\",\n        \"password must be longer than or equal to 8 characters\",\n        \"password should not be empty\"\n    ],\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+								},
+								{
+									"name": "Sign In",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/sign-in",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sign-in"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "2891"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"b4b-RM52eR/x3p241DWbP+JsVTte0uA\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 20:56:23 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"accessToken\": \"eyJraWQiOiJkYXJxQ1hUQ3Zkd25YY3l4SkhaV0o0TmsxdmZsS0g2UkFsbDh0SlpQZWhnPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzZTY4ODAwOS0zMDVjLTQ5NGItOGUzMS04NGU3YWRlNTdjZDYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0yLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMl81REVZTHZ2RkoiLCJjbGllbnRfaWQiOiI2MWxobmJybmFqNGowOTMwcGV2am92MjJrMSIsIm9yaWdpbl9qdGkiOiJjYzU5ZDNlYS0xMGQwLTQ3MDQtOTZhOS05YjYwNzY4ODkwOGYiLCJldmVudF9pZCI6ImE1YmFiNDA1LTY5OWMtNGQ4My1iZDI5LThmY2RiMDZmZGVlZiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MDE4OTYxODMsImV4cCI6MTcwMTg5OTc4MywiaWF0IjoxNzAxODk2MTgzLCJqdGkiOiJiZDkxZjM4Zi1jNWY5LTQyYjMtODM4ZS1kZTIxMWZkODAzMGUiLCJ1c2VybmFtZSI6IjNlNjg4MDA5LTMwNWMtNDk0Yi04ZTMxLTg0ZTdhZGU1N2NkNiJ9.0PZiIl1zoJp3M1XG1tJxobMDxAm0JUx1o-aslAHs1jsPPrF87rMK8MlHA-6aaKSkXkoXyLPpMvOSfOlNwbqXEjmxTAFFtVuYfs_DNBoQFTN3VQRixbwYaoI5OOX91KuzTMDoydb6_zEeU2istuF81p_1D5v57aq4fVM2NE5rZbzPuHNnS8DsPsyYLITYB-y4rhFuHW6hp-HSIPZA-I-mf5E6Sx1YZsYhvTG0kvaVFzHtNw7vEIxyVm6MypIV38BbMou4gmiT2kvN1gMWpQIfnezCcTHEe-9Bl8H60XnUyKtIwqLSuw1qTVc84kmQCuJ0sL4MprOH4PqujEhd2zKmVw\",\n    \"refreshToken\": \"eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.WXOV7JJTJtl5OYf3iCZzVP4G6aqHt5aqfZsdT2zYkij-OoOsE6q0UoBdHM73RZ83WJjnvy_2VxR4y02NgTzgXsToCl6oZinPDvO8WRbT3Ed-4eQHO2tK8ZuDs25i-BuuiQxMZcRMa9PtPA1hlWrJ2X9Lho8ALFX2jmc7zFtxztExA4RqGwx6IXX_yERu6PbYQ24XyX5ONrB6iPdxgGe8djZgYRNhhfFhidEhIxPlrYxZZgh4b8bQpft8k2g8lERO3Xt0tF-SPGzYneW8aLRZJ4vLpEOw7dwvbz0jwCsZEBMXmWmPMWw5_EcSzS6zpXfu-CiiAwoqLhfuJSexAUdAMw.eXbzKBnEJ-BsOKIQ.rV0U2OHJvx5TfZghlDat1f1469bug473o1gqGszERfa3_r43w7sFvDGVuk-O0a3tjAR0js8RBO4Ub4rFvyf38DdIB6OFza_ymI8oR2LV_iMYuzzCXnFPtYCIcaYRIrgY1EL1_EOKCgVlHR-HhGxvdL_-Ol-Q96O6q9m12UhwAHy-dNMnzcbxIB2aEcItSaDLKSWkxdeTilYf6JAep6r4SJ9lUf7UDeFt2MB-XK8AEl5NnIl7C1eRiXk24RaTDiLvlI-VWOWLCS-PEVbQeyHtk1_ZNf7Q9PE6r71W9bsxhuJnU_DFkYfHQYet_8d-N1R2Vc2ksrq28JXHYPXBxted-1YO0j0leIzdtogs-KsJMqgH5_uLTvYU65zQI6iYWaX3RFDpWYY3gXqgGkjpwsdqt4vDLtQwn-zp66MN_lk5XvSAeLEFbBhteankczenchCMQG_lKlfamh0Yqvv2095rFPgGcpJTpGkzMGljDo9d_6lxaLJOgtvFCkS30RhpQ3A7xxSthRsvCnEKI7K3VCyl__JPD3YTnC_9HCLtYqcaoPkyaAYRxyHnJb1R_IztknS9p-UrIvRXNPQCjXzrJqocLZ1gOiYPZ_V4rmIin2_o2dZ_6vd-DaPxbkDMCfKWnSVACto7jyRwlcosVW7sMWqnROFAlojkry1KgFue7GsIsKaBY59Xnye9OjV3EKqjRnFfCUQgYIyGcn7yNbBiyOeKoYRf2pJ3zIca2azDr-Cog0td9-9nor_Iu6Lo_3RNRRMn9xrAfvkhSSwUrl8-IqSp37h7jU4mdTaDiIkELaD8G_8JyU7qFDDPNMqVmkxzAGgi_S4S-QJm3TrheY7S6Pz_pm9S3XqEVWlWEMusZtXb0_i7kNp-zpELz7h5rn1WmbMjmTHuL_viTVtzL90mtMzDZnqUpbw1rG3HHJvAE3SezXTIiAes8i4SgW6s6BvrEYlxDtTPzq1OWEmEWb2mI3ryA2H3O5pHwHqY4vcVR09C6Knypg5L4U45QUA_75N2QiRutKNq-5g4-8xNtTTDmj7HX2RflhVGh7M3hxbc_xBoW1EYgW0Y6vqaKJPnB-32kNPnOo4hJQ58Fs0CordcoIM0mXJo8WBLgWSCYFOwgZSbC0RO0UQOfo-zekZcsJsPPzxP6ILPTR_tQXjn8CE4UXUrPHxn8hyAYhnbnhWrs1iyN2P-Hd3Xt7mDWL-UOfGTb2l-oqzlK0sG26RDEB0TBMkA69mCllXpbLA8FCD965yNbFATxG1Mh-NVKyE5EGO4lPPOOBT3W5XAf5KSTuCdfAkkqr-d1qKY_0Y0kAEkQ6bawd1spaEhOt0k3SA3-w.OydHMfUWJb71s7UXRGtzXg\"\n}"
+								},
+								{
+									"name": "With 2FA",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"password\": \"{{user_password}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/sign-in",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sign-in"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1308"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"51c-q4NVrcDRSJPcA2CGoAsnr2RCsO8\""
+										},
+										{
+											"key": "Date",
+											"value": "Tue, 12 Dec 2023 18:39:42 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"session\": \"AYABePPasAUmQuoyPPoRlhfMXrsAHQABAAdTZXJ2aWNlABBDb2duaXRvVXNlclBvb2xzAAEAB2F3cy1rbXMAS2Fybjphd3M6a21zOnVzLWVhc3QtMjo0MTc1Njc5MDM0Njk6a2V5LzVjZDI0ZDRjLWVjNWItNGU4Ny05MGI2LTVkODdkOTZmY2RkMgC4AQIBAHjif3k0w30uAyP92ifoZ0jN6g50UW_KR0w9Vv2c_wlQAgHi-WCovpA7iQJCYPmOETkEAAAAfjB8BgkqhkiG9w0BBwagbzBtAgEAMGgGCSqGSIb3DQEHATAeBglghkgBZQMEAS4wEQQMbxHcvg7JsvtFIiiiAgEQgDsjhzcBYLr55jM1O3GCLrd84JgAe1-NC8obkV3Hyt_aSS_pVWTReaajzileVD29g0Z3VuuC75uX1v8Z8QIAAAAADAAAEAAAAAAAAAAAAAAAAABE7cvx5BLgGmQhiD_6hjAZ_____wAAAAEAAAAAAAAAAAAAAAEAAAIA4V1DaGQOTCwl3D-WpYR62iFoCLhjFLOwyZrHpDdl_QPBiJpnpuDH36sNCySnxgbgYIs1wzlHnVf50Z7-OEs8CKHkXXSwa6gBEnn2aOWq4Nj8ZWEl_nnw6TM9OX_KqKGwHktKqZ5l8tvE9AtOHled6diXcbNo2LWbKWmgJCuPIxB4E7rnrU16jGKTaf3-OtcoI3NWz1mJP87aggvcH6jDpE41SInMjhRZupHnEDMr1STG296jaTVyAi9zCGiD_4i6PEHBtt0FQQviJVzD0CkPbFHEbHLwViK9k1ysFVbyCvgnydW9EXrcDjhoywDien6Tsd3UgRe4gMFFkhgyCIhgLCR7C9M8x7zgVPVCqLc6sEIuRwFzvv1dcCpJwg_tqcGLS5ZMoH43FGT3J7xnIrBdet4omBNxuSfnAPsuLCyBjujM5V8HWo0QN5Mxa7kM1Y0SmECwHh-jrzfdJX5T754819v5Luxk5U1sThD8xi0enEqrL82hfQT9G8lAvBH5mD0BlTANbddcmtpf2CBhi_fLN8WYtYW9AnvUzJS-a-cMWo8L-Le1bqhSMBYDZutSO8mvCqNDNm8ZzvVdsLQjfpVfzmRoXd25AMS0zh_Z0Pm60iLl9fCRIk4RlyKL_smT9wPXj4P93I5A_6uDIUYnT_jQOt8nWi0Hd-DENBNJMUg5lxuzys7HlwpKpldFDqS3jUgh\",\n    \"userId\": \"0a932064-e1b4-45f1-bd74-62b6dff5b8fb\",\n    \"challengeName\": \"SMS_MFA\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Session",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "GET",
+								"header": [],
+								"url": {
+									"raw": "{{HOST}}/auth/session",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"session"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Session",
+									"originalRequest": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/auth/session",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"session"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "169"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"a9-JQLYn6LnqT7oPrr9SAxTD1hFXbU\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 20:56:36 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"user\": {\n        \"id\": \"3e688009-305c-494b-8e31-84e7ade57cd6\",\n        \"email\": \"roberto.amarante+6@flatirons.com\",\n        \"firstName\": \"John\",\n        \"lastName\": \"Doe\",\n        \"emailVerified\": true,\n        \"mfaConfig\": {}\n    }\n}"
+								}
+							]
+						},
+						{
+							"name": "Sign Out",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "bearer",
+									"bearer": [
+										{
+											"key": "token",
+											"value": "{{user_access_token}}",
+											"type": "string"
+										}
+									]
+								},
+								"method": "DELETE",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"accessToken\": \"{{user_access_token}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/auth/sign-out",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"sign-out"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Sign Out",
+									"originalRequest": {
+										"method": "DELETE",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"accessToken\": \"{{user_access_token}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/sign-out",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sign-out"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "16"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 21:08:37 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true\n}"
+								}
+							]
+						},
+						{
+							"name": "Sign Up",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var response = pm.response.json();",
+											"var request = JSON.parse(pm.request.body.raw); ",
+											"",
+											"pm.collectionVariables.set(\"user_email\", request.email);",
+											"pm.collectionVariables.set(\"user_password\", request.password);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"roberto.amarante@flatirons.com\",\n    \"password\": \"$3cureDP45Sw0rd\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\",\n    \"phoneNumber\": \"+18296487404\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/auth/sign-up",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"sign-up"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Sign Up",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"roberto.amarante+6@flatirons.com\",\n    \"password\": \"$3cureDP45Sw0rd\",\n    \"firstName\": \"John\",\n    \"lastName\": \"Doe\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/sign-up",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sign-up"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "61"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"3d-84HT0Y2xUpk0FIaPMA+FvC1D+qE\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 20:54:00 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"roberto.amarante+6@flatirons.com\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Refresh Token",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var response = pm.response.json();",
+											"",
+											"pm.collectionVariables.set(\"user_access_token\", response.accessToken);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"token\": \"{{user_refresh_token}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/auth/refresh-token",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"refresh-token"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Refresh Token",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"token\": \"{{user_refresh_token}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/refresh-token",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"refresh-token"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "1089"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"441-wZSIZseV1pulA+VSukHHgzIstCM\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 20:56:29 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"accessToken\": \"eyJraWQiOiJkYXJxQ1hUQ3Zkd25YY3l4SkhaV0o0TmsxdmZsS0g2UkFsbDh0SlpQZWhnPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzZTY4ODAwOS0zMDVjLTQ5NGItOGUzMS04NGU3YWRlNTdjZDYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0yLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMl81REVZTHZ2RkoiLCJjbGllbnRfaWQiOiI2MWxobmJybmFqNGowOTMwcGV2am92MjJrMSIsIm9yaWdpbl9qdGkiOiJjYzU5ZDNlYS0xMGQwLTQ3MDQtOTZhOS05YjYwNzY4ODkwOGYiLCJldmVudF9pZCI6ImE1YmFiNDA1LTY5OWMtNGQ4My1iZDI5LThmY2RiMDZmZGVlZiIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MDE4OTYxODMsImV4cCI6MTcwMTg5OTc4OSwiaWF0IjoxNzAxODk2MTg5LCJqdGkiOiIyYmU3MDUxMy03MWMyLTRmYjctYTE3NC01ZTIyYjc4NTkzZWQiLCJ1c2VybmFtZSI6IjNlNjg4MDA5LTMwNWMtNDk0Yi04ZTMxLTg0ZTdhZGU1N2NkNiJ9.iYts6zdniOyPay-d4hVfFSUaxeleJPBYBT1X-aIr4ymRndcVNCMmVmreHgDiqs2yePqNAW3RWWMWMy8Ng1DCI5bLZq9tgmt9WOv7WTB9cjzX-gCuhmeM9H-ApD7lHWltuO5H_xAejln3byKIOvZs5VuC53ZP1FnJuyrT3zWndwR0L2dcDFeRC_UEhlgX0KSSpjVQ9yvf3pKTBjd1ptWWufRFM5Wo2W67Zp2NQScmV6Qkm-6kES8PiB_qqlQ7j5ov_xmAxdMe9Qm8XaLszTWLnkL2nZG4teK_t64H5cFh6rNw9zdC8DCC5a-VTG49suD5F7WSD_lcJV8klXYQ7RdNyQ\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Confirm Sign Up",
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"code\": \"450013\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/auth/sign-up/confirm",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"sign-up",
+										"confirm"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Confirm Sign Up",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"code\": \"517026\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/sign-up/confirm",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sign-up",
+												"confirm"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "36"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"24-4bPtRk54NL+kPiHDl5k7ke8geQM\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 20:56:13 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"SUCCESS\"\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "Recovery",
+					"item": [
+						{
+							"name": "Forgot Password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{user_email}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/auth/forgot-password",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Forgot Password",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"{{user_email}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/forgot-password",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"forgot-password"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "44"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2c-/yws7bO4j1ehuQYfP+13J1xo3EI\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 20:56:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"medium\": \"EMAIL\",\n    \"destination\": \"r***@f***\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Resend Sign Up Email",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"auth": {
+									"type": "noauth"
+								},
+								"method": "POST",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{user_email}}\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/auth/email/resend",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"email",
+										"resend"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Forgot Password",
+									"originalRequest": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"{{user_email}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/forgot-password",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"forgot-password"
+											]
+										}
+									},
+									"status": "Created",
+									"code": 201,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "44"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"2c-/yws7bO4j1ehuQYfP+13J1xo3EI\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 20:56:45 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"medium\": \"EMAIL\",\n    \"destination\": \"r***@f***\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Forgot Password Confirm",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var request = JSON.parse(pm.request.body.raw); ",
+											"",
+											"pm.collectionVariables.set(\"user_password\", request.password);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"code\": \"384801\",\n    \"password\": \"n2w$3cureDP45Sw0rd\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/auth/forgot-password",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"forgot-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Forgot Password Confirm",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"email\": \"{{user_email}}\",\n    \"code\": \"384801\",\n    \"password\": \"n2w$3cureDP45Sw0rd\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/forgot-password",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"forgot-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "36"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"24-4bPtRk54NL+kPiHDl5k7ke8geQM\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 20:58:48 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true,\n    \"message\": \"SUCCESS\"\n}"
+								}
+							]
+						},
+						{
+							"name": "Change Password",
+							"event": [
+								{
+									"listen": "test",
+									"script": {
+										"exec": [
+											"var request = JSON.parse(pm.request.body.raw); ",
+											"",
+											"pm.collectionVariables.set(\"user_password\", request.newPassword);",
+											""
+										],
+										"type": "text/javascript"
+									}
+								}
+							],
+							"request": {
+								"method": "PUT",
+								"header": [],
+								"body": {
+									"mode": "raw",
+									"raw": "{\n    \"oldPassword\": \"n2w$3cureDP45Sw0rd\",\n    \"newPassword\": \"n2w$3cureDP45Sw0rds\"\n}",
+									"options": {
+										"raw": {
+											"language": "json"
+										}
+									}
+								},
+								"url": {
+									"raw": "{{HOST}}/auth/change-password",
+									"host": [
+										"{{HOST}}"
+									],
+									"path": [
+										"auth",
+										"change-password"
+									]
+								}
+							},
+							"response": [
+								{
+									"name": "Change Password",
+									"originalRequest": {
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"oldPassword\": \"n2w$3cureDP45Sw0rd\",\n    \"newPassword\": \"n2w$3cureDP45Sw0rds\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/change-password",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"change-password"
+											]
+										}
+									},
+									"status": "OK",
+									"code": 200,
+									"_postman_previewlanguage": "json",
+									"header": [
+										{
+											"key": "X-Powered-By",
+											"value": "Express"
+										},
+										{
+											"key": "Content-Type",
+											"value": "application/json; charset=utf-8"
+										},
+										{
+											"key": "Content-Length",
+											"value": "16"
+										},
+										{
+											"key": "ETag",
+											"value": "W/\"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA\""
+										},
+										{
+											"key": "Date",
+											"value": "Wed, 06 Dec 2023 20:59:24 GMT"
+										},
+										{
+											"key": "Connection",
+											"value": "keep-alive"
+										},
+										{
+											"key": "Keep-Alive",
+											"value": "timeout=5"
+										}
+									],
+									"cookie": [],
+									"body": "{\n    \"success\": true\n}"
+								}
+							]
+						}
+					]
+				},
+				{
+					"name": "2FA",
+					"item": [
+						{
+							"name": "TOTP",
+							"item": [
+								{
+									"name": "TOTP QR",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{user_access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/auth/totp?qrType=image&qrFormat=terminal",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"totp"
+											],
+											"query": [
+												{
+													"key": "qrType",
+													"value": "image",
+													"description": "image, data-url, text"
+												},
+												{
+													"key": "qrFormat",
+													"value": "terminal",
+													"description": "Only applies to  svg, utf8, terminal"
+												}
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Data URL",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{HOST}}/auth/totp?qrType=data-url&qrFormat=terminal",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"totp"
+													],
+													"query": [
+														{
+															"key": "qrType",
+															"value": "data-url",
+															"description": "image, data-url, text"
+														},
+														{
+															"key": "qrFormat",
+															"value": "terminal",
+															"description": "Only applies to  svg, utf8, terminal"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "html",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/html; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "5378"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"1502-6cx1VvuNDJmqiTqh9119S7lsff8\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 06 Dec 2023 21:00:26 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAOQAAADkCAYAAACIV4iNAAAAAklEQVR4AewaftIAAA9oSURBVO3BwYleyw5G0e3iz0ihfBOFqIlCUTwNxuA31aigOKfb9S5a69fX7z9/GWNcYTHGuMZijHGNxRjjGosxxjUWY4xrLMYY11iMMa6xGGNcYzHGuMZijHGNxRjjGosxxjUWY4xrLMYY11iMMa7x4SHz5CdViB3zZKdC7JgnXYXozJOuQuyYJ12F+H9inuxUiM486SpEZ56cqBA75klXITrz5CdViCcWY4xrLMYY11iMMa7x4WUV4k3myRMV4kSF6MyTJypEZ550FWLHPOkqxI550lWIzjzpKkRnnuxUiJ0KsVMhOvNkxzx5U4V4k3nypsUY4xqLMcY1FmOMa3z4ZubJiQpxwjzpKsQJ86SrEG8yT7oKcaJCdObJCfOkqxA7FaIzT54wT7oK0VWIE+bJm8yTExXiOy3GGNdYjDGusRhjXOPDf4x50lWIzjzpKsROhdgxT06YJ12FOFEhOvNkp0J05slOhXhThdgxT3YqxE6F+C9ZjDGusRhjXGMxxrjGh/+YCtGZJ12F2DFPdipEVyHeZJ68yTw5YZ58J/PkiQrxX7YYY1xjMca4xmKMcY0P36xC/EsVojNPugqxUyE686SrEJ15cqJCdBWiM0+6CnHCPDlRIXbMkzdViM486cyTrkK8qULcZDHGuMZijHGNxRjjGh9eZp7cxDzpKkRnnnQVojNPugrRmSddhejMk65CdOZJVyFOmCddhdipEJ15smOedBWiM0+6CtGZJ12F6MyTrkJ05smOedJViB3z5GaLMcY1FmOMayzGGNf48FCF+H9inpyoEDsV4okK8USF+EnmyY550lWInQrRmSddhXiiQvw/WYwxrrEYY1xjMca4xoeHzJOuQnTmyZsqRFchOvNkp0KcME+6CtGZJ12FOGGedBVixzx5U4XozJOuQnTmSVchTpgnT5gnJ8yTN1WI77QYY1xjMca4xmKMcY1fX7///OVF5klXITrz5ESF2DFPdipEZ550FeInmScnKkRnnpyoEDvmSVchOvOkqxCdedJViBPmSVchTpgnOxXiCfOkqxDfaTHGuMZijHGNxRjjGr++fv/5ywPmyU6FeMI8OVEhdsyTExWiM09OVIgd8+REhejMkxMVojNPugqxY57sVIjOPNmpEDvmyU+qECfMk65CPLEYY1xjMca4xmKMcY0PL6sQnXlyokJ0FWLHPNkxT3YqxIkK0ZknO+ZJVyG6CvGmCrFjnnwn82SnQnTmSVchTlSIzjzZqRCdedKZJ12F6MyTrkK8aTHGuMZijHGNxRjjGh8eqhCdedJViB3zZMc86SrEiQrRmSc75klXITrzpKsQO+bJCfPkRIXozJOdCrFjnnQVYqdCdObJjnnynSpEZ5505klXIXbMk5+0GGNcYzHGuMZijHGND9/MPDlhnnQVYqdCdOZJVyFOVIjOPDlhnuyYJzsVojNPugrRmSc7FeJEhfhJFeJN5skT5sm/tBhjXGMxxrjGYoxxjQ8vqxAnzJMd86SrEJ150lWIzjzpKkRnnuxUiB3z5ESF6MyTzjx5okJ05slOhXhThdgxT56oEJ150lWIn2SedBXiicUY4xqLMcY1FmOMa3x4yDzZqRCdedJViCcqRGee7JgnJ8yTrkKcqBCdebJTITrzZKdCdOZJVyE682THPOkqRFchTpgnXYXozJOdCtGZJyfMkxMVojNPdirEmxZjjGssxhjXWIwxrvHhoQrRmSdPmCc7FeKJCrFjnnQVYqdCdOZJZ57sVIjOPOkqRGee7FSIzjzpKkRnnnQVYsc8ecI86SrEd6oQnXnSVYjOPOkqRGeefKfFGOMaizHGNRZjjGv8+vr95y8PmCddhejMk50KccI86SrECfNkp0I8YZ50FaIzT05UiBPmyZsqxI550lWIzjzpKsSOebJTIXbMkxMV4iaLMcY1FmOMayzGGNf49fX7z19eZJ50FeKEebJTIXbMk65C7JgnXYXozJMnKsQJ82SnQnTmSVchTpgnXYXozJMnKkRnnnQVojNPugrRmSddhXiTedJViM486SrEmxZjjGssxhjXWIwxrvHr6/efvzxgnuxUiB3zZKdCPGGedBXiTeZJVyF2zJOdCrFjnnQVojNPdipEZ57sVIgnzJMnKsQJ86SrEJ15slMh/qXFGOMaizHGNRZjjGt8eKhC7JgnJypEZ568yTzpKkRnnuxUiK5CnKgQnXnSmSc7FaIzT7oK0ZknnXnyhHmyUyF2KsQT5smbKsSOeXKiQjyxGGNcYzHGuMZijHGNDw+ZJ12FeFOF2DFPugpxwjzpKsSOedJViDdViB3zZMc82akQnXnSVYjOPOkqxIkK0ZknJyrEToXozJPOPHlThfhOizHGNRZjjGssxhjX+PBQhXiTefIvmSddhXjCPOkqRFchOvPkJhVixzx5okLsmCddhejMkyfMkyfMk65CPLEYY1xjMca4xmKMcY0PD5knXYXoKkRnnuxUiBPmyY550lWInQrRmSdPVIjOPOkqxIkKccI8OWGedBXiRIX4lyrECfOkqxA75sl3WowxrrEYY1xjMca4xoeHKkRnnnQVoqsQnXmyY550FeJEhejMk65C7FSIzjzpzJOdCrFjnjxhnnQVYsc86SrECfOkqxCdedJViM48+UnmSVchdsyTnQrRmSdvWowxrrEYY1xjMca4xoeHzJMd86SrECcqxAnzZKdC7JgnT1SIzjzZqRCdeXKiQpyoEDvmyQnzpKsQOxXiJ1WIExXiRIV402KMcY3FGOMaizHGNT48VCF2zJMT5skTFeI7VYgTFaIzT3YqRGeedObJm8yTrkLsmCc75sl3qhA75skT5klXITrzZKdCPLEYY1xjMca4xmKMcY0PD5knXYXoKsROhThhnjxhnnQVoqsQJ8yTrkL8SxVixzx5okJ05klXId5knnTmyYkK0ZknXYU4USE68+RNizHGNRZjjGssxhjX+PBQhejMkycqRGeedBWiM08686SrEF2F6MyTnQrRmSddhejMk+9UITrz5ESF2DFPugrRmSddhejMk50K0ZknOxXiTRXihHnykxZjjGssxhjXWIwxrvHhIfOkqxCdedJViB3zpKsQnXnSVYjOPOnMk65CfKcK8YR50lWIzjzpKsQJ86SrEF2F2KkQnXnSVYjOPDlRITrzZKdC7JgnXYXozJMTFeI7LcYY11iMMa6xGGNc48M3qxCdebJTITrzZMc82akQnXnSVYjOPOnMk65C7JgnJypEVyF2KsSOedJViB3zpKsQnXnSVYiuQnynCrFjnuxUiDeZJzsV4onFGOMaizHGNRZjjGv8+vr95y//kHmyUyE686SrEJ150lWIJ8yTN1WIHfOkqxCdedJViB3zpKsQJ8yTnQrRmSddhdgxT95UITrzpKsQnXnSVYjOPOkqRGeedBXiicUY4xqLMcY1FmOMa3x4yDw5USG6CtGZJ5150lWIzjzZMU+eqBCdedJViM48+UnmyU6F6MyTrkJ05slOhdipEE9UiM486SpEZ57sVIgT5smJCvGmxRjjGosxxjUWY4xr/Pr6/ecvD5gnJyrEjnnSVYjOPNmpEDvmSVchOvPkiQqxY550FaIzT3YqxI550lWIJ8yTnQrRmSddhThhnpyoEDvmyU6F6MyTrkL8pMUY4xqLMcY1FmOMa3x4qEJ05smOedJViB3z5E0VojNPTlSIzjzpzJOuQnQVojNPdirEm8yTrkJ05slOhdipEDvmyYkKsWOedBVip0J05skJ86SrEG9ajDGusRhjXGMxxrjGr6/ff/5yEfOkqxCdedJViM486SrECfOkqxCdedJViM482akQJ8yTrkKcME+6CtGZJ12F6MyTnQqxY568qUJ05slOhfh/shhjXGMxxrjGYoxxjQ8PmSdPVIiuQnTmyYkKccI86SpEZ550FaIzT7oK0ZknO+ZJVyF2zJOuQnTmyY550lWIExVixzw5USE682THPOkqxI550lWIzjx5U4V4YjHGuMZijHGNxRjjGr++fv/5y4vMkxMV4oR5cqJC7JgnT1SIzjzpKsSOefKmCrFjnnQVojNPTlSIE+bJiQqxY548USE686SrEJ150lWINy3GGNdYjDGusRhjXOPDN6sQJ8yTnQrRmScnzJOuQpwwT3YqxI550lWIHfNkp0K8qUJ05smOefKdzJOuQnQVojNPnqgQOxXiOy3GGNdYjDGusRhjXOPX1+8/f3mReXKiQpwwT05UiM48OVEhdsyTrkL8JPOkqxCdeXKiQnTmSVchOvPkRIXYMU+6CvEm82SnQuyYJzsV4onFGOMaizHGNRZjjGv8+vr95y8PmCcnKsQJ86SrEDvmyYkK0ZknOxXiTeZJVyE68+RNFWLHPOkqRGeedBXihHmyUyE68+RmFeJNizHGNRZjjGssxhjX+PX1+89f/o+ZJ9+pQrzJPOkqRGee7FSIE+ZJVyE68+REhejMk65CnDBPdipEZ57sVIgT5skTFeJNizHGNRZjjGssxhjX+PCQefKTKkRXITrzpKsQnXnSVYjOPNkxT7oK0ZknOxWiM0+6CtGZJzvmSVchnqgQJyrEjnnSVYidCrFTITrzZMc86SrEm8yTrkI8sRhjXGMxxrjGYoxxjQ8vqxBvMk92zJOuQuxUiBPmyY55slMhdipEZ56cqBBvMk+6CtGZJ0+YJ12F2DFPnqgQT1SIn7QYY1xjMca4xmKMcY0P38w8OVEhnjBPdipEZ57sVIjOPOkqRGeedOZJVyGeME/eVCE68+REhdgxT3bMkxMVojNPOvPkTeZJVyE686SrEE8sxhjXWIwxrrEYY1zjw39MhejMk848OWGedBXiCfPkiQrxnSpEZ57smCcnKkRnnnQVYsc82akQO+bJToX4lxZjjGssxhjXWIwxrvHhP65CnDBPugrRmSdPVIjOPDlhnpyoEE9UiM48ecI8eaJCdObJExWiM0+6CtGZJ99pMca4xmKMcY3FGOMaH75ZhfhOFaIzT75ThejMk65C7JgnJyrEjnnSVYgd86SrEJ150lWIrkKcME+6CrFjnvxLFWKnQnTmyZsWY4xrLMYY11iMMa7x6+v3n788YJ78pArRmSdPVIg3mSddhdgxT3YqRGeedBWiM0+6CrFjnnQVYsc8eVOFOGGedBXiO5knJyrEE4sxxjUWY4xrLMYY1/j19fvPX8YYV1iMMa6xGGNcYzHGuMZijHGNxRjjGosxxjUWY4xrLMYY11iMMa6xGGNcYzHGuMZijHGNxRjjGosxxjUWY4xr/A8GDc4InqZGcwAAAABJRU5ErkJggg=="
+										},
+										{
+											"name": "Text Terminal",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{HOST}}/auth/totp?qrType=text&qrFormat=terminal",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"totp"
+													],
+													"query": [
+														{
+															"key": "qrType",
+															"value": "text",
+															"description": "image, data-url, text"
+														},
+														{
+															"key": "qrFormat",
+															"value": "terminal",
+															"description": "Only applies to  svg, utf8, terminal"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "html",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/html; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "28662"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"6ff6-lV6hA4HFIHISJh4xC7FYGjhUccg\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 06 Dec 2023 21:00:38 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[40m  \u001b[0m\u001b[47m  \u001b[0m\n\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\u001b[47m  \u001b[0m\n"
+										},
+										{
+											"name": "Text SVG",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{HOST}}/auth/totp?qrType=text&qrFormat=svg",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"totp"
+													],
+													"query": [
+														{
+															"key": "qrType",
+															"value": "text",
+															"description": "image, data-url, text"
+														},
+														{
+															"key": "qrFormat",
+															"value": "svg",
+															"description": "Only applies to  svg, utf8, terminal"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "html",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/html; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "3941"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"f65-EphL+gwKp1vOEhkNgSQQvw6JTWo\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 06 Dec 2023 21:00:51 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "<svg xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 57 57\" shape-rendering=\"crispEdges\">\n    <path fill=\"#f7fafc\" d=\"M0 0h57v57H0z\"/>\n    <path stroke=\"#2A52A9\" d=\"M4 4.5h7m2 0h2m2 0h1m1 0h1m2 0h1m11 0h2m1 0h1m1 0h3m2 0h1m1 0h7M4 5.5h1m5 0h1m2 0h1m4 0h2m2 0h2m2 0h1m2 0h1m1 0h1m1 0h2m5 0h5m1 0h1m5 0h1M4 6.5h1m1 0h3m1 0h1m1 0h1m3 0h2m1 0h1m7 0h5m2 0h3m1 0h3m2 0h2m1 0h1m1 0h3m1 0h1M4 7.5h1m1 0h3m1 0h1m1 0h4m2 0h1m1 0h1m1 0h2m4 0h2m1 0h1m2 0h1m4 0h3m1 0h1m2 0h1m1 0h3m1 0h1M4 8.5h1m1 0h3m1 0h1m1 0h1m1 0h1m2 0h1m3 0h2m2 0h7m1 0h2m1 0h1m3 0h2m4 0h1m1 0h3m1 0h1M4 9.5h1m5 0h1m1 0h2m1 0h1m2 0h2m1 0h1m1 0h1m2 0h1m3 0h1m5 0h4m1 0h2m3 0h1m5 0h1M4 10.5h7m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h7M12 11.5h5m9 0h1m3 0h1m1 0h1m1 0h4m3 0h1m2 0h1M4 12.5h1m1 0h5m2 0h2m2 0h6m1 0h1m1 0h5m2 0h1m1 0h1m3 0h3m1 0h2m1 0h5M5 13.5h1m1 0h3m2 0h1m2 0h1m1 0h1m1 0h1m2 0h8m2 0h1m1 0h1m1 0h1m3 0h1m3 0h2M10 14.5h3m4 0h1m2 0h2m2 0h3m1 0h3m1 0h1m2 0h2m1 0h2m2 0h7m1 0h1m1 0h1M4 15.5h5m5 0h1m1 0h1m3 0h3m2 0h1m1 0h1m3 0h3m1 0h2m3 0h1m1 0h2m1 0h2m3 0h2M4 16.5h2m2 0h1m1 0h3m3 0h2m1 0h1m2 0h1m2 0h2m2 0h2m3 0h2m2 0h5m1 0h1m1 0h6M6 17.5h4m2 0h2m2 0h1m1 0h1m2 0h4m1 0h4m3 0h3m3 0h1m1 0h3m1 0h3m1 0h3M4 18.5h2m2 0h5m1 0h1m2 0h1m3 0h2m1 0h4m2 0h2m3 0h1m1 0h1m1 0h1m7 0h1m1 0h4M7 19.5h1m3 0h1m1 0h6m1 0h2m1 0h2m1 0h1m2 0h3m1 0h1m4 0h1m1 0h2m2 0h1m1 0h3m1 0h2M5 20.5h1m1 0h4m1 0h3m2 0h1m3 0h3m1 0h1m1 0h2m3 0h1m2 0h5m3 0h2m2 0h1m1 0h1m1 0h1M5 21.5h2m1 0h1m3 0h1m2 0h2m4 0h1m1 0h3m4 0h4m2 0h1m1 0h1m2 0h2m2 0h3M5 22.5h1m1 0h2m1 0h3m3 0h1m1 0h4m3 0h2m1 0h2m2 0h1m1 0h4m1 0h1m1 0h1m1 0h1m5 0h1m1 0h1M4 23.5h3m2 0h1m3 0h1m6 0h5m2 0h1m1 0h5m1 0h1m2 0h1m2 0h1m3 0h4M7 24.5h1m1 0h4m2 0h1m5 0h2m1 0h3m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m4 0h3m1 0h1m2 0h3M4 25.5h1m1 0h2m4 0h1m1 0h1m1 0h2m1 0h1m1 0h3m3 0h4m1 0h1m1 0h3m4 0h1m1 0h1m2 0h2m2 0h1m1 0h1M7 26.5h6m1 0h1m1 0h2m1 0h1m1 0h2m1 0h8m5 0h4m1 0h1m1 0h9M4 27.5h1m2 0h2m3 0h2m2 0h2m1 0h1m5 0h2m3 0h1m1 0h2m2 0h1m5 0h1m1 0h1m3 0h1m2 0h2M5 28.5h1m2 0h1m1 0h1m1 0h1m3 0h2m1 0h2m1 0h5m1 0h1m1 0h2m3 0h1m1 0h1m1 0h4m1 0h1m1 0h1m1 0h4M4 29.5h3m1 0h1m3 0h2m1 0h2m5 0h2m1 0h2m3 0h1m2 0h4m7 0h1m3 0h1M4 30.5h1m1 0h1m1 0h5m2 0h1m1 0h4m2 0h1m2 0h5m1 0h1m2 0h8m1 0h5m2 0h2M4 31.5h1m4 0h1m1 0h2m3 0h1m3 0h1m2 0h1m2 0h3m2 0h2m3 0h1m1 0h1m4 0h2m2 0h1m4 0h1M6 32.5h3m1 0h1m1 0h2m2 0h2m1 0h5m1 0h1m2 0h1m6 0h1m4 0h1m8 0h4M4 33.5h1m1 0h1m2 0h1m1 0h1m1 0h5m2 0h1m6 0h1m3 0h1m4 0h1m3 0h1m2 0h1m2 0h1m1 0h3M4 34.5h2m1 0h2m1 0h4m1 0h9m5 0h1m1 0h2m4 0h2m1 0h3m1 0h2m2 0h5M5 35.5h1m2 0h2m1 0h1m1 0h1m1 0h1m2 0h1m2 0h2m2 0h1m1 0h1m2 0h1m3 0h2m1 0h1m2 0h4m2 0h1m1 0h1m1 0h1m1 0h1M4 36.5h1m4 0h2m1 0h6m1 0h1m1 0h2m2 0h1m1 0h3m1 0h1m1 0h2m5 0h1m1 0h3m2 0h1m1 0h2M6 37.5h1m2 0h1m2 0h1m2 0h1m1 0h4m2 0h1m1 0h5m4 0h2m1 0h1m3 0h3m2 0h2m1 0h1M5 38.5h1m1 0h1m1 0h3m2 0h1m1 0h1m3 0h3m1 0h2m1 0h1m1 0h1m1 0h1m1 0h2m4 0h3m2 0h1m1 0h2m1 0h1m1 0h1M6 39.5h2m1 0h1m2 0h1m1 0h1m2 0h1m1 0h1m6 0h2m2 0h2m2 0h1m3 0h2m1 0h2m1 0h2M4 40.5h3m1 0h1m1 0h1m1 0h2m2 0h1m1 0h1m1 0h1m1 0h1m1 0h1m1 0h2m1 0h1m2 0h1m1 0h2m1 0h2m1 0h4m2 0h1m1 0h5M5 41.5h5m3 0h2m1 0h1m2 0h1m1 0h1m2 0h6m1 0h1m1 0h3m4 0h2m2 0h4m1 0h1m1 0h1M5 42.5h1m3 0h2m1 0h2m1 0h1m1 0h3m3 0h1m2 0h2m6 0h2m1 0h2m1 0h3m2 0h3m3 0h2M5 43.5h3m3 0h7m2 0h1m7 0h1m1 0h3m1 0h1m1 0h3m2 0h1m5 0h2m3 0h1M4 44.5h3m3 0h1m3 0h2m3 0h1m2 0h1m1 0h1m1 0h5m2 0h1m1 0h1m3 0h2m1 0h11M12 45.5h1m2 0h2m2 0h1m1 0h3m1 0h2m3 0h1m1 0h3m1 0h1m3 0h2m1 0h2m3 0h4M4 46.5h7m2 0h1m3 0h1m1 0h4m1 0h1m1 0h1m1 0h1m1 0h1m1 0h1m5 0h1m1 0h1m3 0h1m1 0h1m1 0h1m1 0h3M4 47.5h1m5 0h1m1 0h1m4 0h5m3 0h2m3 0h1m1 0h1m2 0h2m1 0h2m3 0h2m3 0h3M4 48.5h1m1 0h3m1 0h1m1 0h3m2 0h1m2 0h3m2 0h6m2 0h1m1 0h1m3 0h3m2 0h5m1 0h1m1 0h1M4 49.5h1m1 0h3m1 0h1m1 0h1m1 0h1m1 0h3m1 0h7m7 0h4m2 0h1m1 0h7m3 0h1M4 50.5h1m1 0h3m1 0h1m1 0h1m4 0h1m1 0h4m1 0h6m3 0h8m1 0h1m1 0h1m2 0h1m1 0h1m1 0h2M4 51.5h1m5 0h1m2 0h2m1 0h2m5 0h3m2 0h1m2 0h1m1 0h1m4 0h1m2 0h7m4 0h1M4 52.5h7m1 0h4m5 0h1m2 0h2m1 0h1m1 0h1m2 0h1m2 0h5m3 0h1m2 0h1m3 0h3\"/>\n</svg>"
+										},
+										{
+											"name": "Text UTF8",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{HOST}}/auth/totp?qrType=text&qrFormat=utf8",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"totp"
+													],
+													"query": [
+														{
+															"key": "qrType",
+															"value": "text",
+															"description": "image, data-url, text"
+														},
+														{
+															"key": "qrFormat",
+															"value": "utf8",
+															"description": "Only applies to  svg, utf8, terminal"
+														}
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "html",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "text/html; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "3575"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"df7-6yxtyjF5omDvD614uteakHTL+jw\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 06 Dec 2023 21:01:07 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "                                                         \n                                                         \n    █▀▀▀▀▀█ ▀ ▀  ▄█  ▄█▀██▄  ▀█▀ ▄█▄█▄ ▀█ ▄▄█ █▀▀▀▀▀█    \n    █ ███ █ ▄▄▄▀▄ ▄▀▀▄ ▄  █▄ █▀█▀█ █  ▄  ▄ █▀ █ ███ █    \n    █ ▀▀▀ █ █ ▀▄   ▀  ▀▀█▄█▀▀▀█▄▄▀▀ ▀▀▄▄  ▄   █ ▀▀▀ █    \n    ▀▀▀▀▀▀▀ █ ▀ ▀▄█ █▄█ ▀ █ ▀ █ ▀▄▀▄█▄█▄█▄▀ ▀ ▀▀▀▀▀▀▀    \n    ▀ ▄ █▄▀█▀ █▄▄▀▀▀▄▄▀▀ ████▀██▄▀▄▄▀█ ▀█▄█▄██▀██▀  ▀    \n    ▀█▄▄▀█▀█▀ ▀ ▀▀ ██ ▀ ▀█▀▀ ▀▀▄ █▀██▄▄▄▀▄▀█▄  ▀█ █▀▄    \n     █▀▀█▄▀▄▀▀  ▄▄▀ █▄█▀▀▄███ ▄█ ▀▄ ██ █▀▄█▄█▄██  ▄█     \n     ▀ ▄▄▄▀▄ ▄ ▄▄█▄▀  ▄▄█▀ ██▄▀██▀█▀   ▄▀▄▀█ █▀▄▄▀  ▄    \n    █▄▀█▀▄▀█▀▄▀▄▄▄██ █▀ ▀  ▀▀▄▀▀█▄ ▄ ▄█▀ ▀▀▄▀▄▄ █▄ ▀     \n    ▀█▄▀██▀▀ ▀██▄▄▀▀  ▄▄▄▀▄▀▄█▄ ▄▀▄█▀▀▀ ██ ▀█▀█▄▄▀█▄█    \n    ▄█▀█ ▄▀▄  █▀▄█ ▀ ██▀█▄▀▄█▀ ▄▀▀▄▀ █▀▄▄▀█ ▀▀▀ ████▀    \n    ▀ █ █▀▀▀█ ▄█ ▄▄███ ▄▀██▀▀▀█ ▀▀█ ▄▀▄██ █ █▀▀▀█▀▄▄     \n    ▄ ▀██ ▀ █▄▄▄▀▀▄█▄▀█ ▄ █ ▀ █▄ ▄▄ ▀▄ ▀▀▄▄██ ▀ █▄▀▀▀    \n    █▄▀ █▀▀██ █▄ ▀▀ ▄███  ▀▀▀▀▀▄ █▀▀██▄▄▄▀▀▄▀█▀█▀▄▀▄     \n    █▄ ▄▀▄▀▀▄ ▄█  █▀▄▀▀▄█ ▀▄▀██▀ ▄▄▄▀▀▀ █▀█▀  ▄█▀ ▄▀▀    \n     ▀ ▀ ▀▀█▀██▄█▀█▄▀  ▀ ██▀█▀▄▀▄█▀▄ ███ ▄█▄▀▄▀ █▀ ▄     \n    █▄▀█ █▀▄ ▄▀█▀ ▀ ▄▀▀▀█ ▄█▄ █▄ ▀█▀█▀  ▀▀ ▄▄ ▄█▄ ▀      \n    █▀█▄█ ▀█▄ ▀█▄  ▄▄▀▄ ▀▀▀▀█▀▄█▀▄ ▄▄ ▀▄ █▄▀ ▀▄▄▄▀█▄█    \n    ▀ ▄▄▄▀▀▀█▄▀ ██▀▀▀█ █ ▀██▄█▀ ▀▄██▄▄▀██ ▄▄▄▄█▀▄ ▀██    \n     █▄▄ ▀▀▀██  ▀▀▀▀▀█▀▀  ▄▄▀▀▄▄ █ ▀██ ▄██▀ █▄▄█▄ ██▀    \n    ▀▀▀   ▀▀█ █▄█ █▀ █▄▀▄▀█▀▀▀██▄█▄▄▀█ ▀█▀▄ █▀▀▀█ ▀▄▀    \n    █▀▀▀▀▀█ ▀▀█▄▀█▄▄▄ ▄ ▀▄█ ▀ █  ██▄▄▄ ▀▄▄ ▄█ ▀ █ ▀▄▄    \n    █ ███ █ ▀▄█ █ ▀▀▄██▀▀ █▀▀███ ▀▀ ▀▄█▀█ █▀███▀▀█  █    \n    █ ▀▀▀ █  ▄▀███ ██▄▄▄██▄▄ ▀ ▄█ ▄▀▀▀ ▄▄▄▄▄ ▀▄█ ▀█▄     \n    ▀▀▀▀▀▀▀ ▀ ▀▀ ▀▀▀ ▀ ▀   ▀  ▀▀▀     ▀▀ ▀▀   ▀▀▀▀▀▀▀    \n                                                         \n                                                         "
+										}
+									]
+								},
+								{
+									"name": "Verify TOTP",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var response = pm.response.json();",
+													"",
+													"pm.collectionVariables.set(\"user_refresh_token\", response.refreshToken);",
+													"pm.collectionVariables.set(\"user_access_token\", response.accessToken);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"code\": \"002604\",\n    \"user\": \"{{user_id}}\",\n    \"session\": \"{{user_session}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/totp",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"totp"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Error",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"code\": \"164730\",\n    \"user\": \"{{user_id}}\",\n    \"session\": \"{{user_session}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{HOST}}/auth/totp",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"totp"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "83"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"53-SmZuf/atGjgvg0mWHV3xoNxbfLQ\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 06 Dec 2023 21:07:14 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Invalid code received for user\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+										},
+										{
+											"name": "Verify TOTP",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"code\": \"002604\",\n    \"user\": \"{{user_id}}\",\n    \"session\": \"{{user_session}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{HOST}}/auth/totp",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"totp"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "2891"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"b4b-QKJ8Jm79OdOm3oyeQB31BTHAAzY\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 06 Dec 2023 21:07:35 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"accessToken\": \"eyJraWQiOiJkYXJxQ1hUQ3Zkd25YY3l4SkhaV0o0TmsxdmZsS0g2UkFsbDh0SlpQZWhnPSIsImFsZyI6IlJTMjU2In0.eyJzdWIiOiIzZTY4ODAwOS0zMDVjLTQ5NGItOGUzMS04NGU3YWRlNTdjZDYiLCJpc3MiOiJodHRwczpcL1wvY29nbml0by1pZHAudXMtZWFzdC0yLmFtYXpvbmF3cy5jb21cL3VzLWVhc3QtMl81REVZTHZ2RkoiLCJjbGllbnRfaWQiOiI2MWxobmJybmFqNGowOTMwcGV2am92MjJrMSIsIm9yaWdpbl9qdGkiOiJjNTQ4ZTM0OC02OWEzLTRiYTQtODhlZS1jMWJiY2U5MmQ2NWMiLCJldmVudF9pZCI6ImE2ODY3NWIyLWIxMTItNDE0Mi1iNjJkLWIwMGY0ZWVmYmI4MSIsInRva2VuX3VzZSI6ImFjY2VzcyIsInNjb3BlIjoiYXdzLmNvZ25pdG8uc2lnbmluLnVzZXIuYWRtaW4iLCJhdXRoX3RpbWUiOjE3MDE4OTY4NTUsImV4cCI6MTcwMTkwMDQ1NSwiaWF0IjoxNzAxODk2ODU1LCJqdGkiOiIzMjk4NTRkMC01OTIwLTQ5MGItYWU3Ny00ODZjMWIwMzNjYTEiLCJ1c2VybmFtZSI6IjNlNjg4MDA5LTMwNWMtNDk0Yi04ZTMxLTg0ZTdhZGU1N2NkNiJ9.EFsu8HcN6qjiMvEUYKufxu9h6AG27h0LH2tsE6_wbn-TZSKF5alFl7Ssa76rNrXBhc79eUJ44M6TQ3c_rdgqilmfr2E2bSefZIZzZtwzXpVARiNmsXfTxX_aoBdn5gP3KvrA4-i_sAo90bIWJphytaYYkwLl1EBr55f6GgvYs9OyrJwLWqW3IiSrpuvmXUnYr9_wAhucpw_8Rf48vBVjXMRl7UJwpr6mVZIbgpEOdzaAKuXaF6_Xe7AmGNX82dBS6oknEz95EcO8hsaOFBB37vpM7zkhZPzZ1fTJVx4EeZ7NnlPriPImcu4mjLnZOuo6PkULCcG2osU3bn8ezUMdbQ\",\n    \"refreshToken\": \"eyJjdHkiOiJKV1QiLCJlbmMiOiJBMjU2R0NNIiwiYWxnIjoiUlNBLU9BRVAifQ.ct3wj0fa54rHkKtFe9OollLeqn1PZNWXQp0flOcaOiITYQ-PYzpog2KP0KlcLnoq40gwiH9HswRYBKxHOlLg_owx6HwJTZ7ZKtE3M9gVqveco12gxdDxvnff_F1XJrJPngR5p_imaDrcCktXErxtVNcRqUI2tq_Oe7mA_YhxxFV6kaVB8Kd-jRBriiettguifToi3FMLhLR07HoL3JUaygH1NeoqCVhcLVFLbRDCFYzjts8f8pz2JD9ltB5R8_h7XlziLnHm7uOLw8TZphrsZzvAjqk876B3BMPsCPhCds8cAvkOwXORICQIUEhZUcSy-0DZ8RUHo0tCQcSWzx1ToA.VV97QX3Y1cuQC26K.RbddiUShPje0k2l9RgUJ5dBpkc40EPMElUgLCojCKUWwf-uPRvnazHfgvAaaKbd938v1q7CjsPbtY0TTia1w7cfzZ7W0qN1U3F0rEYs1hRam2zkcnP-iUd1AKnW-ZWH4BD5XR-ApXhvIjpNTNfTfkiffxMQDAwn0vatROPana2Yb6cYiwKheRFoQ7uVZkPj5OrG5_Dzhb8_mvz46mPJfJ7tgNl5YAJxDPWwRkYPpHlRmNbJs8zhqL6YhNERyblnABwvtKJ0bMARwGd1wRliUmseEQPSBvoa2QnPC-pTpREJDZQ6krrWpJKrt2VTe_Cp2G1_1ChBCsv2VmtrOilrPab3XMrd2OG_3L2xda4rNcbYIAmGn7ynFf-W_HK5Jzn3N_jFIXMOx1f8WV3CRjb9NIBoxjmWtf-2K2ontZQno7safOby1G-uqvdfmUzoRNLyDPL2oafQF8De366gb8UuOveUvzLg8Bd0ZADo8ZZCoYIkPkvrLj7Oq0cAeLN6PIhVfTMrZyo62gb8JqU_akibxZ_Th3T2YYP-9LwfTz4PKCNSCCWwyChPGseVgkQyTN1oROOnlsmtEx9jZaKrqtt-4LAhJK8qWl1xcZnxq-6PNNmIXK1v7YnbznXcPZoH2OczvSp2Y-PizjsDdBe98MhIHEJ984_dz2-B-SojbAxZcMpqhgTIXZ2xvZTKZzIfwRmeWKb9AlkDKqE5dnrN9fgH57ipYY3TqkhtsgX8-dceOCynbcRVtHoaUoxcy2Bvns-3Q6NNofDS8a4vReIFipZnvlhC3u67YnDRKCJh_uRyJLgVbYnuKSbydlcGkcKqlSrn8HNozEeHKQ6jpsEcHhkQexjBMEiYcB6ZO4nbdflrgDK4m5fnXYIcL4ExeDash6dTULS_WQLoMG-CjKhjs10yr8tFYzQPVIgttuXzjloK8oyy2Ln-CicYVifQU7o31dEfvHsX2V-i230-hrGibViTTyWdEDZlo1FisUKsdy4vaXecNxT22p9-tl1QXw6GZCNeTrZlfXDHtjPS8RgiDocbboBT_GpWxfpw8CfaMPvOuBooE5Pn79tlRmEl3MzNOhSf-TqPsyu2WoSNjOPxrWsYRErwbXl201pdteEkeiE1RTVE0DFWKAIpT3VCeJKbb7BqjmjoCp5-yRwct7GdtEftnN7GpL6Omkqaxa610YPWGWfukOYuiwAJSkFrqYbDqOoaFYb4Ksgc3zC1_IEQzd6GRbBn1GbcbtXVN35bnu5RW29G-hpWpzd5QN41LntQHYzEccdb5gmoxCCNoSFC2jgyAlFMP5OjoLTUhIiZJI8xsHWLV96KGO8TlJ0-SCA.B6Kz31JIuxYVuOAbFBjN7Q\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Enable TOTP",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "bearer",
+											"bearer": [
+												{
+													"key": "token",
+													"value": "{{user_access_token}}",
+													"type": "string"
+												}
+											]
+										},
+										"method": "POST",
+										"header": [
+											{
+												"key": "user-device",
+												"value": "Magic Mouse",
+												"type": "text"
+											}
+										],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"code\": \"167713\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/totp",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"totp"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Enable TOTP",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "user-device",
+														"value": "Magic Mouse",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"code\": \"167744\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{HOST}}/auth/totp",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"totp"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "16"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 06 Dec 2023 21:03:40 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"success\": true\n}"
+										},
+										{
+											"name": "Error",
+											"originalRequest": {
+												"method": "POST",
+												"header": [
+													{
+														"key": "user-device",
+														"value": "Magic Mouse",
+														"type": "text"
+													}
+												],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"code\": \"167713\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{HOST}}/auth/totp",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"totp"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "66"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"42-9bT51gFAg6JJhgN38H+dHAgb6b4\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 06 Dec 2023 21:04:00 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Code mismatch\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+										}
+									]
+								},
+								{
+									"name": "Remove TOTP",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/auth/totp",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"totp"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Remove TOTP",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{HOST}}/auth/totp",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"totp"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "16"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA\""
+												},
+												{
+													"key": "Date",
+													"value": "Wed, 06 Dec 2023 21:08:27 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"success\": true\n}"
+										}
+									]
+								}
+							]
+						},
+						{
+							"name": "SMS",
+							"item": [
+								{
+									"name": "SMS",
+									"request": {
+										"method": "GET",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/auth/sms",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sms"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "SMS",
+											"originalRequest": {
+												"method": "GET",
+												"header": [],
+												"url": {
+													"raw": "{{HOST}}/auth/sms",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"sms"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "45"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"2d-L4G1OJ1zQs/sEfu+8JMFNE5FV5I\""
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 12 Dec 2023 22:36:47 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"medium\": \"SMS\",\n    \"destination\": \"+*******7404\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Enable SMS 2FA",
+									"request": {
+										"method": "POST",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"code\": \"167713\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/sms",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sms"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Error",
+											"originalRequest": {
+												"method": "POST",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"code\": \"167713\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{HOST}}/auth/sms",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"sms"
+													]
+												}
+											},
+											"status": "Created",
+											"code": 201,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "83"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"53-F9XKpTrwxNnjpMDHMbVKWyXNWy8\""
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 12 Dec 2023 22:44:05 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"success\": false,\n    \"message\": \"Invalid verification code provided, please try again.\"\n}"
+										}
+									]
+								},
+								{
+									"name": "Verify SMS",
+									"event": [
+										{
+											"listen": "test",
+											"script": {
+												"exec": [
+													"var response = pm.response.json();",
+													"",
+													"pm.collectionVariables.set(\"user_refresh_token\", response.refreshToken);",
+													"pm.collectionVariables.set(\"user_access_token\", response.accessToken);",
+													""
+												],
+												"type": "text/javascript"
+											}
+										}
+									],
+									"request": {
+										"auth": {
+											"type": "noauth"
+										},
+										"method": "PUT",
+										"header": [],
+										"body": {
+											"mode": "raw",
+											"raw": "{\n    \"code\": \"002604\",\n    \"user\": \"{{user_id}}\",\n    \"session\": \"{{user_session}}\"\n}",
+											"options": {
+												"raw": {
+													"language": "json"
+												}
+											}
+										},
+										"url": {
+											"raw": "{{HOST}}/auth/sms",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sms"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Error",
+											"originalRequest": {
+												"method": "PUT",
+												"header": [],
+												"body": {
+													"mode": "raw",
+													"raw": "{\n    \"code\": \"002604\",\n    \"user\": \"{{user_id}}\",\n    \"session\": \"{{user_session}}\"\n}",
+													"options": {
+														"raw": {
+															"language": "json"
+														}
+													}
+												},
+												"url": {
+													"raw": "{{HOST}}/auth/sms",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"sms"
+													]
+												}
+											},
+											"status": "Bad Request",
+											"code": 400,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "102"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"66-qkP3sbVx95li9SGVuiCL+ZZHI/s\""
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 12 Dec 2023 23:07:54 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"message\": \"Invalid session for the user, session is expired.\",\n    \"error\": \"Bad Request\",\n    \"statusCode\": 400\n}"
+										}
+									]
+								},
+								{
+									"name": "Remove SMS",
+									"request": {
+										"method": "DELETE",
+										"header": [],
+										"url": {
+											"raw": "{{HOST}}/auth/sms",
+											"host": [
+												"{{HOST}}"
+											],
+											"path": [
+												"auth",
+												"sms"
+											]
+										}
+									},
+									"response": [
+										{
+											"name": "Remove SMS",
+											"originalRequest": {
+												"method": "DELETE",
+												"header": [],
+												"url": {
+													"raw": "{{HOST}}/auth/sms",
+													"host": [
+														"{{HOST}}"
+													],
+													"path": [
+														"auth",
+														"sms"
+													]
+												}
+											},
+											"status": "OK",
+											"code": 200,
+											"_postman_previewlanguage": "json",
+											"header": [
+												{
+													"key": "X-Powered-By",
+													"value": "Express"
+												},
+												{
+													"key": "Content-Type",
+													"value": "application/json; charset=utf-8"
+												},
+												{
+													"key": "Content-Length",
+													"value": "16"
+												},
+												{
+													"key": "ETag",
+													"value": "W/\"10-oV4hJxRVSENxc/wX8+mA4/Pe4tA\""
+												},
+												{
+													"key": "Date",
+													"value": "Tue, 12 Dec 2023 23:12:29 GMT"
+												},
+												{
+													"key": "Connection",
+													"value": "keep-alive"
+												},
+												{
+													"key": "Keep-Alive",
+													"value": "timeout=5"
+												}
+											],
+											"cookie": [],
+											"body": "{\n    \"success\": true\n}"
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		},
+		{
+			"name": "Messaging",
+			"item": [
+				{
+					"name": "Send SMS",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "key",
+									"value": "{{API_KEY_HEADER_KEY}}",
+									"type": "string"
+								},
+								{
+									"key": "value",
+									"value": "{{API_KEY_HEADER}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"+18296486404\",\n    \"template\": \"account-created-code\",\n    \"data\": {\n        \"code\": \"111222\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/messaging/sms/send",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"messaging",
+								"sms",
+								"send"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Send Email",
+					"request": {
+						"auth": {
+							"type": "apikey",
+							"apikey": [
+								{
+									"key": "value",
+									"value": "{{API_KEY_HEADER}}",
+									"type": "string"
+								},
+								{
+									"key": "key",
+									"value": "{{API_KEY_HEADER_KEY}}",
+									"type": "string"
+								}
+							]
+						},
+						"method": "POST",
+						"header": [],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"to\": \"{{user_email}}\",\n    \"template\": \"account-created\",\n    \"data\": {\n        \"code\": \"123123\"\n    }\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "{{HOST}}/messaging/email/send",
+							"host": [
+								"{{HOST}}"
+							],
+							"path": [
+								"messaging",
+								"email",
+								"send"
+							]
+						}
+					},
+					"response": []
+				}
+			]
+		},
+		{
+			"name": "Get",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000"
+				}
+			},
+			"response": []
+		}
+	],
+	"auth": {
+		"type": "bearer",
+		"bearer": [
+			{
+				"key": "token",
+				"value": "{{user_access_token}}",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		}
+	],
+	"variable": [
+		{
+			"key": "HOST",
+			"value": "http://localhost:3000/v1",
+			"type": "string"
+		},
+		{
+			"key": "user_email",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "user_password",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "user_token",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "user_refresh_token",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "user_access_token",
+			"value": "",
+			"type": "default"
+		},
+		{
+			"key": "user_session",
+			"value": ""
+		},
+		{
+			"key": "user_id",
+			"value": ""
+		},
+		{
+			"key": "API_KEY_HEADER",
+			"value": "eeshei-arhise-d-srcat-t"
+		},
+		{
+			"key": "API_KEY_HEADER_KEY",
+			"value": "x-api-key"
+		}
+	]
+}

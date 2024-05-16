@@ -1,0 +1,119 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CognitoProviderService changePassword should change password with valid access token and old/new passwords 1`] = `
+{
+  "message": undefined,
+  "success": true,
+}
+`;
+
+exports[`CognitoProviderService confirmSignUp should confirm sign up with valid verification code 1`] = `
+{
+  "message": "SUCCESS",
+  "success": true,
+}
+`;
+
+exports[`CognitoProviderService disableTOTPMfa should disable TOTP MFA 1`] = `
+{
+  "message": undefined,
+  "success": true,
+}
+`;
+
+exports[`CognitoProviderService enableTOTPMfa should enable TOTP MFA 1`] = `
+{
+  "message": undefined,
+  "success": true,
+}
+`;
+
+exports[`CognitoProviderService forgotPassword should initiate forgot password flow for user 1`] = `
+{
+  "destination": "r***@f***",
+  "medium": "EMAIL",
+}
+`;
+
+exports[`CognitoProviderService forgotPasswordSubmit should confirm forgot password with valid verification code and new password 1`] = `
+{
+  "message": null,
+  "success": true,
+}
+`;
+
+exports[`CognitoProviderService generateTOTPSecret should generate TOTP Secret 1`] = `"3a2b698a-2282-4c82-bec2-f7f657b2a5d4"`;
+
+exports[`CognitoProviderService getSMSMfa should get SMS MFA details and return DeliveryInfo 1`] = `
+{
+  "destination": "r***@f***",
+  "medium": "EMAIL",
+}
+`;
+
+exports[`CognitoProviderService getUser should get user data by email 1`] = `
+{
+  "email": "Dasia30@yahoo.com",
+  "emailVerified": true,
+  "firstName": "Kolby",
+  "id": "0c925980-eb57-4ec9-a704-edb8f1272be3",
+  "lastName": "Jast",
+  "mfaConfig": {
+    "preferredSetting": undefined,
+    "settingList": undefined,
+  },
+  "phoneNumber": undefined,
+  "phoneNumberVerified": false,
+}
+`;
+
+exports[`CognitoProviderService refreshToken should refresh token with valid refresh token 1`] = `
+{
+  "accessToken": "e67862f3-ccbf-4c51-ab8e-ded1d0420ea1",
+  "challengeName": undefined,
+  "refreshToken": undefined,
+  "session": undefined,
+  "userId": undefined,
+}
+`;
+
+exports[`CognitoProviderService resendEmail should resend email confirmation code and return DeliveryInfo 1`] = `
+{
+  "destination": "r***@f***",
+  "medium": "EMAIL",
+}
+`;
+
+exports[`CognitoProviderService signIn should sign in a user with valid credentials 1`] = `
+{
+  "accessToken": "e67862f3-ccbf-4c51-ab8e-ded1d0420ea1",
+  "challengeName": undefined,
+  "refreshToken": undefined,
+  "session": undefined,
+  "userId": undefined,
+}
+`;
+
+exports[`CognitoProviderService signOut should sign out with a valid access token 1`] = `
+{
+  "message": undefined,
+  "success": true,
+}
+`;
+
+exports[`CognitoProviderService signUp should sign up a user with provided email, password, and additional data 1`] = `
+{
+  "message": "Ivy_Hirthe60@gmail.com",
+  "success": true,
+}
+`;
+
+exports[`CognitoProviderService verifyTOTPCode should verify valid TOTP code 1`] = `
+{
+  "accessToken": "e67862f3-ccbf-4c51-ab8e-ded1d0420ea1",
+  "challengeName": undefined,
+  "refreshToken": undefined,
+  "session": undefined,
+  "userId": undefined,
+}
+`;

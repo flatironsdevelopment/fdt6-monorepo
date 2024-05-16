@@ -1,0 +1,22 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`createConfigMock should create a mock configuration object with default values 1`] = `
+{
+  "API_KEY_HEADER": "API_KEY_HEADER",
+  "APP_COMPANY": "APP_COMPANY",
+  "APP_NAME": "APP_NAME",
+  "AWS_COGNITO_CLIENT_ID": "61lhnbrnaj4j0930pevjov22k1",
+  "AWS_COGNITO_USER_POOL_ID": "us-east-2_5DEYLvvFJ",
+  "AWS_REGION": "us-east-2",
+  "HOST_URL": "HOST_URL",
+  "PORT": 3000,
+  "PREVIEW_EMAILS": "PREVIEW_EMAILS",
+  "REDIS_URL": "REDIS_URL",
+  "SMTP_FROM": "SMTP_FROM",
+  "SMTP_URL": "SMTP_URL",
+  "TWILIO_ACCOUNT_SID": "TWILIO_ACCOUNT_SID",
+  "TWILIO_AUTH_TOKEN": "TWILIO_AUTH_TOKEN",
+  "TWILIO_PHONE_NUMBER": "TWILIO_PHONE_NUMBER",
+  "TWILIO_VERIFY_SID": "TWILIO_VERIFY_SID",
+}
+`;

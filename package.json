@@ -1,0 +1,39 @@
+{
+  "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
+  "scripts": {
+    "build": "turbo build",
+    "clean": "turbo clean",
+    "dev": "turbo run dev --filter='./packages/types' --filter='./apps/web' --filter='./apps/nest' --filter='./apps/rails' --filter='./apps/storybook' --filter='./packages/ui'",
+    "dev:rails": "turbo run dev --filter='./packages/types' --filter='./apps/web' --filter='./apps/rails' --filter='./apps/storybook' --filter='./packages/ui'",
+    "dev:nest": "turbo run dev --filter='./packages/types' --filter='./apps/web' --filter='./apps/nest' --filter='./apps/storybook' --filter='./packages/ui'",
+    "file:generate": "yarn plop --plopfile generators/plopfile.js",
+    "format": "prettier --write \"**/*.{ts,tsx,js,json,md}\"",
+    "lint": "turbo lint",
+    "test": "turbo run test",
+    "upgrade:pkgs": "ncu -u --deep && sort-package-json \"package.json\" \"packages/*/package.json\" \"apps/*/package.json\" && yarn",
+    "prepare": "husky",
+    "setup": "turbo setup"
+  },
+  "dependencies": {
+    "lodash": "^4.17.21",
+    "npm-check-updates": "^16.14.14",
+    "sort-package-json": "^2.7.0"
+  },
+  "devDependencies": {
+    "@types/lodash": "^4.14.202",
+    "@types/node": "20.11.16",
+    "@types/react": "18.2.51",
+    "@types/react-dom": "18.2.18",
+    "eslint": "^8.56.0",
+    "eslint-config-custom": "*",
+    "husky": "^9.0.11",
+    "prettier": "^3.2.4",
+    "prettier-plugin-tailwindcss": "^0.5.11",
+    "turbo": "^1.12.2"
+  },
+  "packageManager": "yarn@1.22.19"
+}

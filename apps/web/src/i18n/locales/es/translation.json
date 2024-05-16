@@ -1,0 +1,79 @@
+{
+  "title": "Flatirons Fuel (spanish)",
+  "loren_message": "Lorem Ipsum",
+
+  "auth": {
+    "provide_details": "Por favor, proporciona tus detalles para continuar",
+    "forgot_password": "Olvidé mi contraseña",
+    "sign_in": "Iniciar sesión",
+    "logged_in": "¡Has iniciado sesión!",
+    "sign_up": "Registrarse",
+    "sign_up_here": "Regístrate aquí",
+    "sign_in_here": "Inicia sesión aquí",
+    "dont_have_acccount": "¿No tienes una cuenta?",
+    "two_factor_authentication": "Autenticación de dos factores",
+    "add_code_sent_phone": "Agrega el código enviado a tu teléfono",
+    "wrong_code": "Código incorrecto. Por favor, inténtalo de nuevo",
+    "cant_get_code": "¿No puedes obtener un código?",
+    "use_other_method": "Usar otro método",
+    "next": "Siguiente",
+
+    "create_your_account": "Crea tu cuenta",
+    "filling_your_details": "Comencemos llenando tus detalles",
+    "first_name": "Nombre",
+    "enter_your_first_name": "Ingresa tu nombre",
+    "enter_your_last_name": "Ingresa tu apellido",
+    "last_name": "Apellido",
+    "phone_number": "Número de teléfono",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "already_have_an_account": "¿Ya tienes una cuenta?",
+
+    "recover_your_account": "Recupera tu cuenta",
+    "enter_email_reset_password": "Ingresa tu correo electrónico para enviarte un enlace y restablecer tu contraseña",
+    "submit": "Enviar",
+    "enter_your_email_address": "Ingresa tu dirección de correo electrónico",
+    "enter_your_password": "Ingresa tu contraseña...",
+
+    "remember_your_credentials": "¿Recuerdas tus credenciales?",
+    "back_to_login": "Volver al inicio de sesión",
+    "email_sent": "¡Correo electrónico enviado!",
+    "we_sent_you_an_email_to_set_up_your_new_password": "Te hemos enviado un correo electrónico con un enlace para que configures tu nueva contraseña.",
+    "number_example": "Ej.: 123456",
+
+    "didnt_get_the_link": "¿No recibiste el enlace?",
+    "resend": "Reenviar",
+
+    "change_password": "Cambiar contraseña",
+    "enter_your_new_password_here": "Ingresa tu nueva contraseña aquí",
+    "old_password": "Contraseña antigua",
+    "new_password": "Nueva contraseña",
+    "confirm_password": "Confirmar contraseña",
+    "reset_password": "Restablecer contraseña",
+    "password_changed": "¡Contraseña cambiada!",
+
+    "choose_verification_method": "Elige el método de verificación",
+    "asked_for_a_verification_code": "Se te pedirá un código de verificación al iniciar sesión en la aplicación",
+    "use_authentication_app": "Usar aplicación de autenticación",
+    "sms_text_message": "Mensaje de texto SMS",
+    "you_will_receive_a_sms": "Recibirás un código SMS en tu teléfono:",
+    "a_new_sms_was_sent": "Se envió un nuevo SMS a tu teléfono",
+    "please_confirm_code": "Confirma tu cuenta ingresando el código de autorización enviado a",
+    "take_a_minute_to_receive_code": "Puede tomar un minuto recibir tu código. ¿No lo has recibido?",
+    "resend_a_new_code": "Reenviar un nuevo código",
+
+    "you_need_scan_this_qr": "Debes escanear este código QR con tu aplicación de verificación e ingresar el código de verificación a continuación.",
+    "two_factor_authentication_verified": "Autenticación de dos factores verificada",
+    "your_account_has_been_verified": "Tu cuenta ha sido verificada. Puedes usar la plataforma ahora.",
+    "go_to_dashboard": "Ir al panel de control"
+  },
+
+  "settings": {
+    "account_settings": "Configuración de la cuenta",
+    "you_are_currently_logged_in_as": "Actualmente has iniciado sesión como {{email}}. Aquí puedes gestionar configuraciones relacionadas con tu cuenta. Ten en cuenta que ciertas acciones requieren que te vuelvas a autenticar.",
+    "account_information": "Información de la cuenta",
+    "edit": "Editar",
+    "manage_2fa": "Gestionar 2FA",
+    "enable_2fa_message": "Si habilitas esto, podrás configurar un segundo factor utilizando una aplicación autenticadora TOTP. Esta es una contraseña de un solo uso que caduca después de cierto tiempo. Debes ingresar esta contraseña antes de que caduque para autenticar y realizar acciones protegidas."
+  }
+}

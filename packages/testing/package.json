@@ -1,0 +1,20 @@
+{
+  "name": "testing",
+  "version": "0.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {
+    "test": "jest"
+  },
+  "jest": {
+    "preset": "jest-presets/jest/node"
+  },
+  "devDependencies": {
+    "@automock/adapters.nestjs": "^2.1.0",
+    "@automock/jest": "^2.1.0",
+    "@faker-js/faker": "^8.4.0",
+    "factory.ts": "^1.4.1",
+    "typescript": "^5.3.3",
+    "~types": "*"
+  }
+}

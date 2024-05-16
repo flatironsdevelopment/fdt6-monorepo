@@ -1,0 +1,21 @@
+{
+  "name": "organization-api",
+  "version": "1.0.0",
+  "private": true,
+  "main": "src/index.ts",
+  "scripts": {},
+  "jest": {
+    "preset": "jest-presets/jest/node"
+  },
+  "dependencies": {
+    "react-query": "^3.39.3"
+  },
+  "devDependencies": {
+    "typescript": "^5.3.3",
+    "~types": "*"
+  },
+  "peerDependencies": {
+    "react": "18.2.0",
+    "api-authentication": "*"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "name": "rails",
+  "version": "0.0.1",
+  "private": true,
+  "description": "",
+  "license": "UNLICENSED",
+  "author": "",
+  "scripts": {
+    "build": "bundle",
+    "dev": "rails s -p 3002",
+    "format": "prettier --write \"app/**/*.rb\" \"spec/**/*.rb\"",
+    "code:check": "eslint \"{src,apps,libs,test}/**/*.rb\" --fix",
+    "ts:check": "tsc",
+    "lint": "bundle exec rubocop app/",
+    "start": "rails s -p 3002",
+    "test": "rspec",
+    "setup": "yarn install && bundle install && rails db:reset"
+  },
+  "dependencies": {}
+}

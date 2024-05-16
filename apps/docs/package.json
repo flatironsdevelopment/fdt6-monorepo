@@ -1,0 +1,13 @@
+{
+  "name": "docs",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "cp -R ../../README.md ./pages/README.md && cd ./pages && docsify serve --port 3004",
+    "docs:new": "yarn plop docs --plopfile ../../generators/plopfile.js  "
+  },
+  "devDependencies": {
+    "docsify-cli": "^4.4.4",
+    "plop": "^4.0.1"
+  }
+}

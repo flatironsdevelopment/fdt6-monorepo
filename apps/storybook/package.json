@@ -1,0 +1,35 @@
+{
+  "name": "@docs/storybook",
+  "version": "0.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "storybook build --docs",
+    "clean": "rm -rf .turbo && rm -rf node_modules",
+    "dev": "storybook dev -p 6006",
+    "preview-storybook": "serve storybook-static"
+  },
+  "dependencies": {
+    "@fuel/ui": "*",
+    "@fuel/icons": "*",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@fuel/tailwind-config": "*",
+    "@storybook/addon-actions": "^7.6.12",
+    "@storybook/addon-docs": "^7.6.12",
+    "@storybook/addon-essentials": "^7.6.12",
+    "@storybook/addon-links": "^7.6.12",
+    "@storybook/react": "^7.6.12",
+    "@storybook/react-vite": "^7.6.12",
+    "@vitejs/plugin-react": "^4.2.1",
+    "eslint": "^8.56.0",
+    "eslint-config-custom": "*",
+    "serve": "^14.2.1",
+    "storybook": "^7.6.12",
+    "tsconfig": "*",
+    "typescript": "^5.3.3",
+    "vite": "^5.0.12"
+  }
+}

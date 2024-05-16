@@ -1,0 +1,13 @@
+{
+  "name": "@fuel/tailwind-config",
+  "version": "0.0.0",
+  "private": true,
+  "exports": {
+    ".": "./src/tailwind.config.ts"
+  },
+  "devDependencies": {
+    "tailwindcss": "^3.4.1",
+    "tailwindcss-animate": "^1.0.7",
+    "tsconfig": "*"
+  }
+}

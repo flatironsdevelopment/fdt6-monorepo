@@ -1,0 +1,79 @@
+{
+  "title": "Flatirons Fuel (english)",
+  "loren_message": "Lorem Ipsum",
+
+  "auth": {
+    "provide_details": "Please provide your details to continue",
+    "forgot_password": "I Forgot my Password",
+    "sign_in": "Sign in",
+    "logged_in": "Logged in!",
+    "sign_up": "Sign up",
+    "sign_up_here": "Sign up here",
+    "sign_in_here": "Sign in here",
+    "dont_have_acccount": "Don’t have an account?",
+    "two_factor_authentication": "Two-Factor Authentication",
+    "add_code_sent_phone": "Please add the code sent to your phone",
+    "wrong_code": "Wrong code. Please try again",
+    "cant_get_code": "Can’t get a code?",
+    "use_other_method": "Use other method",
+    "next": "Next",
+
+    "create_your_account": "Create your account",
+    "filling_your_details": "Let’s get started filling your details",
+    "first_name": "First Name",
+    "enter_your_first_name": "Enter your first name",
+    "enter_your_last_name": "Enter your last name",
+    "last_name": "Last Name",
+    "phone_number": "Phone Number",
+    "email": "Email",
+    "password": "Password",
+    "already_have_an_account": "Already have an account?",
+
+    "recover_your_account": "Recover your account",
+    "enter_email_reset_password": "Enter your email to send you a link to reset your password",
+    "submit": "Submit",
+    "enter_your_email_address": "Enter your email address",
+    "enter_your_password": "Type your password...",
+
+    "remember_your_credentials": "Remember your credentials?",
+    "back_to_login": "Back to login",
+    "email_sent": "Email sent!",
+    "we_sent_you_an_email_to_set_up_your_new_password": "We sent you an email with a link for you to set up your new password.",
+    "number_example": "Ex.: 123456",
+
+    "didnt_get_the_link": "Didn't get the link?",
+    "resend": "Resend",
+
+    "change_password": "Change password",
+    "enter_your_new_password_here": "Enter your new password here",
+    "old_password": "Old password",
+    "new_password": "New password",
+    "confirm_password": "Confirm password",
+    "reset_password": "Reset Password",
+    "password_changed": "Password changed!",
+
+    "choose_verification_method": "Choose verification method",
+    "asked_for_a_verification_code": "You will be asked for a verification code when you sign in the app",
+    "use_authentication_app": "Use Authentication App",
+    "sms_text_message": "SMS Text Message",
+    "you_will_receive_a_sms": "You will receive a SMS code on your phone:",
+    "a_new_sms_was_sent": "A new SMS was sent to your phone",
+    "please_confirm_code": "Please confirm your account by entering the authorisation code sent to",
+    "take_a_minute_to_receive_code": "It might take a minute to receive a your code. haven’t received it?",
+    "resend_a_new_code": "Resend a new code",
+
+    "you_need_scan_this_qr": "You need to scan this QR Code with your verification app to and enter the verification code below.",
+    "two_factor_authentication_verified": "Two-Factor Authentication Verified",
+    "your_account_has_been_verified": "Your account has been verified. You can use the platform now.",
+    "go_to_dashboard": "Go to dashboard"
+  },
+
+  "settings": {
+    "account_settings": "Account Settings",
+    "you_are_currently_logged_in_as": "You are currently logged in as {{email}} Here you can manage settings related to your account. Keep in mind that certain actions require you to re-authenticate.",
+    "account_information": "Account Information",
+    "edit": "Edit",
+    "manage_2fa": "Manage 2FA",
+    "enable_2fa_message": "If you enable this, you will be able to set up a second factor using a TOTP Authenticator App. This is a one-time password that expires after a certain time. You must input this password before it expires to authenticate and perform the protected actions."
+  }
+}

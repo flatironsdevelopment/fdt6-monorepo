@@ -1,0 +1,4 @@
+client: yarn install && yarn --cwd client install && PORT=3000 yarn --cwd client run start
+web: PORT=3001 && bundle exec puma -C config/puma.rb
+worker: bundle exec sidekiq -e development -C config/sidekiq.yml
+

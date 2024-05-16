@@ -1,0 +1,180 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: #1f2937;
+    --foreground: #ffffff;
+
+    --muted: #b1e2af;
+    --muted-foreground: #7294aa;
+
+    --popover: #1f2937;
+    --popover-foreground: #ffffff;
+
+    --card: #1f2937;
+    --card-foreground: #ffffff;
+
+    --border: #afcfe2;
+    --input: #afcfe2;
+
+    --primary: #1f2937;
+    --primary-foreground: #ffffff;
+
+    --secondary: #b1e2af;
+    --secondary-foreground: #ffffff;
+
+    --accent: #afcfe2;
+    --accent-foreground: #1f2937;
+
+    --destructive: #dc2626;
+    --destructive-border: #fee2e2;
+    --destructive-foreground: #7a2434;
+
+    --ring: #afcfe2;
+
+    --radius: 0.5rem;
+
+    --modal-height: min(90vh, 720px);
+    --select-height: min(30vh, 584px);
+
+    --action-default: #374151;
+    --action-primary-hover: #6b7280;
+    --action-primary-pressed: #1f2937;
+    --action-primary-focus: #9ca3af;
+    --action-primary-disabled: #d1d5db;
+
+    --text-primary: #111827;
+    --text-secondary: #1f2937;
+    --text-tertiary: #9ca3af;
+    --text-onbutton-default: #fff;
+    --text-onbutton-disabled: #9ca3af;
+
+    --bg-primary: #fff;
+    --bg-primary-oncontrast: #1f2937;
+    --bg-secondary: #f3f4f6;
+    --bg-secondary-oncontrast: #4b5563;
+
+    --success: #16a34a;
+    --success-secondary: #dcfce7;
+
+    --error: #dc2626;
+    --error-secondary: #fee2e2;
+
+    --warning: #eab308;
+    --warning-secondary: #fef9c3;
+
+    --info: #1d4ed8;
+    --info-secondary: #dbeafe;
+  }
+
+  .dark {
+    --foreground: #ffffff;
+    --background: #1f2937;
+
+    --muted: #b1e2af;
+    --muted-foreground: #7294aa;
+
+    --popover: #1f2937;
+    --popover-foreground: #ffffff;
+
+    --card: #1f2937;
+    --card-foreground: #ffffff;
+
+    --border: #afcfe2;
+    --input: #afcfe2;
+
+    --primary: #1f2937;
+    --primary-foreground: #ffffff;
+
+    --secondary: #b1e2af;
+    --secondary-foreground: #ffffff;
+
+    --accent: #afcfe2;
+    --accent-foreground: #1f2937;
+
+    --destructive: #dc2626;
+    --destructive-border: #fee2e2;
+    --destructive-foreground: #7a2434;
+
+    --ring: #afcfe2;
+
+    --radius: 0.5rem;
+
+    --action-default: #374151;
+    --action-primary-hover: #6b7280;
+    --action-primary-pressed: #1f2937;
+    --action-primary-focus: #9ca3af;
+    --action-primary-disabled: #d1d5db;
+
+    --text-primary: #111827;
+    --text-secondary: #1f2937;
+    --text-tertiary: #9ca3af;
+    --text-onbutton-default: #fff;
+    --text-onbutton-disabled: #9ca3af;
+
+    --bg-primary: #000000;
+    --bg-primary-oncontrast: #1f2937;
+    --bg-secondary: #f3f4f6;
+    --bg-secondary-oncontrast: #4b5563;
+
+    --success: #16a34a;
+    --success-secondary: #dcfce7;
+
+    --error: #dc2626;
+    --error-secondary: #fee2e2;
+
+    --warning: #eab308;
+    --warning-secondary: #fef9c3;
+
+    --info: #1d4ed8;
+    --info-secondary: #dbeafe;
+  }
+
+  body {
+    font-feature-settings:
+      'rlig' 1,
+      'calt' 1;
+    @apply h-full;
+  }
+
+  html {
+    @apply h-full;
+  }
+
+  input[type='number']::-webkit-outer-spin-button,
+  input[type='number']::-webkit-inner-spin-button,
+  input[type='number'] {
+    -webkit-appearance: none;
+    margin: 0;
+    -moz-appearance: textfield !important;
+  }
+
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  textarea:-webkit-autofill,
+  textarea:-webkit-autofill:hover,
+  textarea:-webkit-autofill:focus,
+  select:-webkit-autofill,
+  select:-webkit-autofill:hover,
+  select:-webkit-autofill:focus {
+    /* this is just a work around in order to avoid the 
+    input to have a blue color when autofill inputs */
+    transition: background-color 5000s ease-in-out 0s;
+  }
+}
+
+@layer utilities {
+  /* Hide scrollbar for Chrome, Safari and Opera */
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* Hide scrollbar for IE, Edge and Firefox */
+  .no-scrollbar {
+    -ms-overflow-style: none; /* IE and Edge */
+    scrollbar-width: none; /* Firefox */
+  }
+}

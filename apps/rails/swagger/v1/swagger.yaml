@@ -1,0 +1,247 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/users/confirmation?confirmation_token={confirmation_token}":
+    get:
+      summary: confirms user's email
+      tags:
+      - users
+      description: Confirms user's email address
+      parameters:
+      - name: confirmation_token
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: invalid token
+  "/api/v1/users/password":
+    post:
+      summary: request reset password email
+      tags:
+      - users
+      description: Sends email with reset password instructions
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: email not found
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+              required:
+              - email
+    put:
+      summary: update password
+      tags:
+      - users
+      description: reset user password using reset_password_token
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: mismatch password_confirmation
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    reset_password_token:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+              required:
+              - reset_password_token
+              - password
+              - password_confirmation
+  "/api/v1/users/_me":
+    get:
+      summary: my info
+      tags:
+      - users
+      description: Shows current_users info
+      security:
+      - bearer: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users":
+    post:
+      summary: sign up
+      tags:
+      - users
+      description: Sign up. Fields needs to be inside a user object
+      parameters: []
+      responses:
+        '422':
+          description: email already exists
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+              required:
+              - email
+              - password
+    put:
+      summary: update
+      tags:
+      - users
+      description: update user info
+      security:
+      - bearer: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    first_name:
+                      type: string
+                    last_name:
+                      type: string
+                    email:
+                      type: string
+  "/api/v1/users/reset_password":
+    put:
+      summary: update current_user password
+      tags:
+      - users
+      description: Changes current_user password
+      security:
+      - bearer: []
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+        '422':
+          description: unsuccessful, current_password is wrong
+        '400':
+          description: unsuccessful, current_password is required
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    current_password:
+                      type: string
+                    password:
+                      type: string
+                    password_confirmation:
+                      type: string
+              required:
+              - current_password
+              - password
+              - password_confirmation
+  "/api/v1/users/sign_out":
+    delete:
+      summary: sign out
+      tags:
+      - users
+      description: Logout
+      parameters:
+      - name: Authorization
+        in: header
+        schema:
+          type: string
+      responses:
+        '200':
+          description: successful
+  "/api/v1/users/sign_in":
+    post:
+      summary: sign in
+      tags:
+      - users
+      description: Sign in
+      parameters: []
+      responses:
+        '200':
+          description: successful
+        '401':
+          description: wrong password
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                user:
+                  type: object
+                  properties:
+                    email:
+                      type: string
+                    password:
+                      type: string
+servers:
+- url: http://localhost:3001
+  variables:
+    defaultHost:
+      default: http://localhost:3001

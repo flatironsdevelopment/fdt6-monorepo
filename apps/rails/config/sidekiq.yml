@@ -1,0 +1,15 @@
+:verbose: false
+:concurrency: 12
+:timeout: 60
+
+:queues:
+  - default
+  - mailers
+  - rollbar
+
+production:
+  :concurrency: 12
+staging:
+  :concurrency: 12
+development:
+  :concurrency: 12
