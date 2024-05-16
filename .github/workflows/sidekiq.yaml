@@ -1,0 +1,51 @@
+name: Deploy fdt6-rails-sidekiq image
+
+on:
+  push:
+    branches:
+      - staging
+      - main  
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v2
+
+      - name: Set Outputs
+        id: vars
+        run: echo "::set-output name=sha_short::$(git rev-parse --short HEAD)"
+
+      - name: Configure AWS Credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+            aws-region: ${{ secrets.AWS_REGION }}
+            aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+            aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Build and tag fdt6-rails-sidekiq image
+        uses: docker/build-push-action@v5
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          ECR_REPOSITORY: ${{ secrets.PROJECT_NAME }}-application
+          CURRENT_BRANCH: ${{ github.ref_name }}
+          IMAGE_TAG: ${{ steps.vars.outputs.sha_short }}
+        with:
+          context: ./
+          file: apps/rails/Dockerfile.worker
+          push: true
+          tags: ${{ env.ECR_REGISTRY }}/${{ env.ECR_REPOSITORY }}:fdt6-rails-sidekiq
+          build-args: 
+
+      - name: Restart ECS
+        run: |
+          aws ecs update-service --cluster ${{ secrets.PROJECT_NAME }} --service fdt6-rails-sidekiq --force-new-deployment
